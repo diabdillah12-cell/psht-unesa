@@ -63,13 +63,56 @@ Akses eksklusif Pengurus Administrator untuk mengelola seluruh basis data dan ta
 
 ---
 
-## 🚀 Menjalankan Aplikasi
+## 🚀 Menjalankan Aplikasi Lokal
 
 Aplikasi aktif berjalan di:
 👉 **`http://localhost:5000`**
 
-Dapat dijalankan kapan saja melalui file [run.bat](file:///C:/PSHT%20UNESA/run.bat) atau terminal PowerShell:
-```powershell
-$env:Path = "C:\Program Files\nodejs;" + $env:Path
+Dapat dijalankan kapan saja melalui file [run.bat](file:///C:/PSHT%20UNESA/run.bat) atau terminal:
+```bash
 node server/index.js
 ```
+
+---
+
+## 📦 Panduan Push ke GitHub
+
+Repositori Git lokal sudah diinisialisasi pada cabang `main` dan file `.gitignore` telah dipersiapkan dengan rapi.
+
+Untuk menghubungkan dan mem-push ke akun GitHub Anda:
+
+1. **Buat Repositori Baru di GitHub**:
+   - Buka [github.com/new](https://github.com/new).
+   - Beri nama repositori (contoh: `psht-unesa`).
+   - Pilih **Public** atau **Private** (bebas).
+   - **Jangan** centang *"Initialize this repository with a README, .gitignore, or license"* (karena proyek lokal sudah memilikinya).
+   - Klik **Create repository**.
+
+2. **Jalankan Perintah Push di Terminal Proyek**:
+   Ganti `USERNAME` dengan username GitHub Anda:
+   ```bash
+   git remote add origin https://github.com/USERNAME/psht-unesa.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+---
+
+## ☁️ Panduan Deploy ke Vercel
+
+Proyek ini telah dikonfigurasi penuh dengan [`vercel.json`](file:///C:/PSHT%20UNESA/vercel.json) dan Serverless Function [`api/index.js`](file:///C:/PSHT%20UNESA/api/index.js).
+
+### Metode Rekomendasi (Terhubung Langsung dengan GitHub):
+1. Buka [vercel.com](https://vercel.com) dan login dengan akun GitHub Anda.
+2. Klik tombol **"Add New..."** lalu pilih **"Project"**.
+3. Pilih repositori `psht-unesa` yang telah Anda push ke GitHub, lalu klik **"Import"**.
+4. Di halaman konfigurasi proyek:
+   - **Framework Preset**: Biarkan *Other* atau *Vite*.
+   - **Build and Output Settings**: Konfigurasi otomatis terbaca dari `vercel.json`:
+     - *Build Command*: `npm run build`
+     - *Output Directory*: `client/dist`
+   - **Environment Variables** (Opsional):
+     - `JWT_SECRET`: `psht_unesa_rbac_secret_2026` (atau kunci rahasia pilihan Anda).
+5. Klik **"Deploy"**.
+6. Selesai! Web PSHT UNESA Anda akan langsung aktif dengan URL resmi Vercel (contoh: `https://psht-unesa.vercel.app`).
+   Setiap kali Anda melakukan `git push`, Vercel akan otomatis melakukan update dan deploy ulang secara real-time.
