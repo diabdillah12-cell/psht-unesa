@@ -599,7 +599,7 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
-if (!process.env.VERCEL) {
+if (require.main === module && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`[PSHT UNESA RBAC Server] berjalan aktif di port ${PORT}`);
   });

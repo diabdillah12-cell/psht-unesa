@@ -2,14 +2,18 @@
   "name": "psht-unesa-client",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node -e \"const fs=require('fs'); try{if(!fs.existsSync('../dist')) fs.mkdirSync('../dist'); fs.cpSync('dist', '../dist', {recursive:true});}catch(e){console.error(e)}\"",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.475.0",
+    "multer": "^1.4.5-lts.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
