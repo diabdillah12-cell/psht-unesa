@@ -4,29 +4,28 @@ echo ====================================================
 echo   PUSH PROYEK PSHT UNESA KE GITHUB
 echo ====================================================
 echo.
-set "PATH=C:\Users\ABDILLLAH\AppData\Local\Programs\Git\cmd;C:\Program Files\Git\cmd;%PATH%"
+set "PATH=C:\Users\ABDILLLAH\AppData\Local\Programs\Git\cmd;C:\Users\ABDILLLAH\AppData\Local\Programs\Git\ucrt64\bin;C:\Program Files\Git\cmd;%PATH%"
 
-set /p REPO_URL="Masukkan URL Repositori GitHub Anda (contoh: https://github.com/username/psht-unesa.git): "
-if "%REPO_URL%"=="" (
-    echo Error: URL repositori tidak boleh kosong.
-    pause
-    exit /b
-)
+set DEFAULT_URL=https://github.com/diabdillah12-cell/psht-unesa.git
+echo Target Repositori: %DEFAULT_URL%
+echo.
 
 git remote remove origin 2>nul
-git remote add origin %REPO_URL%
+git remote add origin %DEFAULT_URL%
 git branch -M main
+echo Menghubungkan dan melakukan push ke GitHub...
+echo (Jika jendela browser muncul, silakan klik 'Sign in with your browser' / 'Authorize')
 echo.
-echo Menghubungkan dan melakukan push ke %REPO_URL%...
 git push -u origin main
 
 if %errorlevel% equ 0 (
     echo.
     echo ====================================================
     echo   BERHASIL! Proyek berhasil di-push ke GitHub.
+    echo   Cek di: https://github.com/diabdillah12-cell/psht-unesa
     echo ====================================================
 ) else (
     echo.
-    echo Push gagal. Pastikan URL repositori benar dan Anda memiliki akses tulis.
+    echo Push belum selesai. Pastikan Anda telah mengizinkan login GitHub pada browser.
 )
 pause
