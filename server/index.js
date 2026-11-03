@@ -18,7 +18,9 @@ app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 
 // Static files
 app.use('/uploads', express.static(UPLOAD_DIR));
-const clientDist = path.join(__dirname, '../client/dist');
+const clientDist = fs.existsSync(path.join(__dirname, '../dist'))
+  ? path.join(__dirname, '../dist')
+  : path.join(__dirname, '../client/dist');
 const clientPublic = path.join(__dirname, '../client/public');
 if (fs.existsSync(clientPublic)) {
   app.use(express.static(clientPublic));
